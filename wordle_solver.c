@@ -165,21 +165,34 @@ int main() {
     //     printf("%d. %s\n", i+1,current->word);
     //     current = current->next;
     // }
-    
+
 
     // Choose random target
     
     Node * current = WW;
     int r = rand() % wordCount;
    
-    char target[WORD_LENGTH + 1] ; 
-    for(int i = 0; i < WORD_LENGTH; i++) {
-        if (i==r){
-        strcpy(target, current->word);   
-        }
-        letterFreq[current->word[i] - 'A']++;
+    char target[WORD_LENGTH + 1] = "ZYGON" ; 
+    printf("Enter a 5-letter word: ");
+    fgets(target, sizeof(target), stdin);
+
+    // Remove newline if present
+    target[strcspn(target, "\n")] = '\0';
+
+    for(int i = 0; i < wordCount; i++) {
+        // if (i==r){
+        // strcpy(target, current->word);   
+        // }
+        for(int j = 0; j < WORD_LENGTH; j++)
+            letterFreq[current->word[j] - 'A']++;
         current = current->next;
     }
+
+    //    for(int i=0; i<26; i++){
+    //     printf("%c: %d\n", 'A'+i, letterFreq[i]);
+    //     }
+   
+    
 
     printf("➠ Auto Wordle started! (Target word chosen secretly)\n");
     // Uncomment this line to see target:
